@@ -1,47 +1,36 @@
 pipeline {
     agent any
-    
-    environment {
-        AWS_DEFAULT_REGION = 'us-east-1'  // Set your desired AWS region
-    }
 
     stages {
-        stage('Checkout') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    // Checkout the source code from version control
-                    checkout scm
+                    // Build Docker image
+                    docker.build('terraform-local-image')
                 }
             }
         }
 
-        stage('Terraform Init') {
+        stage('Run Terraform Commands') {
             steps {
                 script {
-                    // Run Terraform init
-                    sh '/opt/homebrew/bin/terraform init'
-                }
-            }
-        }
-
-        stage('Terraform Apply') {
-            steps {
-                script {
-                    // Run Terraform apply with auto-approve
-                    sh '/opt/homebrew/bin/terraform apply -auto-approve'
+                    // Run Terraform commands in the Docker container
+                    docker.image('terraform-local-image').inside {
+                        sh 'terraform init'
+                        sh 'terraform plan'
+                        sh 'terraform apply -auto-approve'
+                    }
                 }
             }
         }
     }
-/*
-    post {
+
+  /*  post {
         always {
-            // Clean up resources or perform post-deployment actions if needed
+            // Clean up - remove Docker container
             script {
-                // For example, destroy resources after deployment
-                sh '/opt/homebrew/bin/terraform destroy -auto-approve'
+                docker.image('terraform-local-image').remove()
             }
         }
-    }
-    */
+    }*/
 }
