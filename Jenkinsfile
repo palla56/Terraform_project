@@ -18,7 +18,7 @@ pipeline {
             steps {
                 // Initialize the Terraform working directory
                 script {
-                    sh 'terraform init'
+                    sh '/opt/homebrew/bin/terraform init'
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 // Create an execution plan
                 script {
-                    sh 'terraform plan -out=tfplan'
+                    sh '/opt/homebrew/bin/terraform plan -out=tfplan'
                 }
             }
         }
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 // Apply the changes
                 script {
-                    sh 'terraform apply -auto-approve tfplan'
+                    sh '/opt/homebrew/bin/terraform apply -auto-approve tfplan'
                 }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
             steps {
                 // Destroy the infrastructure (optional, use with caution)
                 script {
-                    sh 'terraform destroy -auto-approve'
+                    sh '/opt/homebrew/bin/terraform destroy -auto-approve'
                 }
             }
         }
