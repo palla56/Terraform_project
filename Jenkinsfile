@@ -6,7 +6,8 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                  sh './build-image.sh'
+                  docker build -t test
+                  docker push 
                 }
             }
         }
