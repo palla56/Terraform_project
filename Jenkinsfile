@@ -1,44 +1,59 @@
 pipeline {
     agent any
 
+    environment {
+        TF_CLI_ARGS = "-input=false"
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the source code from your version control system
+                // Checkout the Terraform project from version control
                 git 'https://github.com/palla56/Terraform_project.git'
             }
         }
 
-        stage('Build') {
+        stage('Initialize') {
             steps {
-                // Build your project (replace 'npm install' with your build command)
-                sh 'npm install'
+                // Initialize the Terraform working directory
+                script {
+                    sh 'terraform init'
+                }
             }
         }
 
-        stage('Test') {
+        stage('Plan') {
             steps {
-                // Run tests (replace 'npm test' with your test command)
-                sh 'npm test'
+                // Create an execution plan
+                script {
+                    sh 'terraform plan -out=tfplan'
+                }
             }
         }
 
-        stage('Deploy') {
+        stage('Apply') {
             steps {
-                // Perform deployment steps (replace 'kubectl apply' with your deployment command)
-                sh 'kubectl apply -f your-deployment.yaml'
+                // Apply the changes
+                script {
+                    sh 'terraform apply -auto-approve tfplan'
+                }
+            }
+        }
+
+        stage('Destroy') {
+            steps {
+                // Destroy the infrastructure (optional, use with caution)
+                script {
+                    sh 'terraform destroy -auto-approve'
+                }
             }
         }
     }
 
     post {
-        success {
-            // Actions to perform when the pipeline is successful
-            echo 'Pipeline successfully completed!'
-        }
-        failure {
-            // Actions to perform when the pipeline fails
-            echo 'Pipeline failed!'
+        always {
+            // Clean up artifacts
+            deleteDir()
         }
     }
 }
