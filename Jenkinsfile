@@ -7,7 +7,7 @@ pipeline {
                 script {
                     // Build Docker image
                   sh '/usr/local/bin/docker build --tag name:tag .'
-                  sh '/usr/local/bin/docker push name' 
+                  sh '/usr/local/bin/docker push name:tag' 
                 }
             }
         }
