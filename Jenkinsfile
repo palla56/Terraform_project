@@ -15,9 +15,9 @@ pipeline {
                   sh '/usr/local/bin/docker build --tag name:tag .'
                   //sh '/usr/local/bin/docker push palla56/repository_name:docker-jenkins-integration'
                   //sh '/usr/local/bin/docker.build("terra:tag")'
-                  sh "/usr/local/bin/docker withRegistry(${DOCKER_TEST}, ${DOCKER_REGISTRY_CREDENTIAL}) {
+                  sh """/usr/local/bin/docker withRegistry(${DOCKER_TEST}, ${DOCKER_REGISTRY_CREDENTIAL}) {
                         docker.image("name:tag").push()
-                  }"
+                  }"""
                 }
             }
         }
