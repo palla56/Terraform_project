@@ -4,7 +4,7 @@ pipeline {
         DOCKER_REGISTRY_CREDENTIAL = 'palla56'
         DOCKER_IMAGE_NAME = 'your_image_name'
         DOCKER_IMAGE_TAG = 'your_image_tag'
-        DOCKER_TEST = 'https://docker-desktop.local/'
+        DOCKER_TEST = "https://docker-desktop.local/"
     }
 
     stages {
