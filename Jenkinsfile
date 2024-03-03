@@ -6,11 +6,11 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                  sh '/usr/local/bin/docker build -t terra:tag'
+                  sh '/usr/local/bin/docker build -t name:tag'
                   //sh '/usr/local/bin/docker push palla56/repository_name:docker-jenkins-integration'
                   //sh '/usr/local/bin/docker.build("terra:tag")'
                   sh """docker.withRegistry('https://docker-desktop.local/', "Palla@56") {
-                        docker.image("terra:tag").push()
+                        docker.image("name:tag").push()
                   }"""
                 }
             }
