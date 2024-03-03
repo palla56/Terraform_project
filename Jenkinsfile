@@ -18,7 +18,7 @@ pipeline {
             steps {
                 // Initialize the Terraform working directory
                 script {
-                    sh '/opt/homebrew/bin/terraform init'
+                    sh 'terraform init'
                 }
             }
         }
