@@ -11,4 +11,4 @@ COPY . /app
 # RUN terraform init
 
 # Apply Terraform configuration
-CMD ["terraform", "apply", "-auto-approve"]
+CMD ["terraform", "init", "-auto-approve"]

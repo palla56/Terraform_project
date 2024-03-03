@@ -28,13 +28,4 @@ pipeline {
             }
         }
     }
-
-  /*  post {
-        always {
-            // Clean up - remove Docker container
-            script {
-                docker.image('terraform-local-image').remove()
-            }
-        }
-    }*/
 }
