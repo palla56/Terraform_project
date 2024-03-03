@@ -23,11 +23,7 @@ pipeline {
             steps {
                 script {
                     // Run Terraform commands in the Docker container
-                    docker.image('terraform-local-image').inside {
-                        sh 'terraform init'
-                        sh 'terraform plan'
-                        sh 'terraform apply -auto-approve'
-                    }
+                    sh "/usr/local/bin/docker image('name')"
                 }
             }
         }
