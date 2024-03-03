@@ -33,7 +33,7 @@ pipeline {
             }
         }
     }
-
+/*
     post {
         always {
             // Clean up resources or perform post-deployment actions if needed
@@ -43,4 +43,5 @@ pipeline {
             }
         }
     }
+    */
 }
