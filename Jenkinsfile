@@ -6,13 +6,14 @@ pipeline {
     }
 
     stages {
+      /*
         stage('Checkout') {
             steps {
                 // Checkout the Terraform project from version control
                 git 'https://github.com/palla56/Terraform_project.git'
             }
         }
-
+*/
         stage('Initialize') {
             steps {
                 // Initialize the Terraform working directory
