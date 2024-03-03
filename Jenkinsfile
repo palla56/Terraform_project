@@ -6,8 +6,8 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                  sh '/usr/local/bin/docker build --tag name:tag .'
-                  sh '/usr/local/bin/docker push name:tag' 
+                  sh '/usr/local/bin/docker build palla56/repository_name/docker-jenkins-integration palla56/repository_name:docker-jenkins-integration'
+                  sh '/usr/local/bin/docker push palla56/repository_name:docker-jenkins-integration'
                 }
             }
         }
