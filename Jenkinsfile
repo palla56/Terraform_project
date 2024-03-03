@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                  sh '/usr/local/bin/docker build -t test'
+                  sh '/usr/local/bin/docker build'
                   sh '/usr/local/bin/docker push' 
                 }
             }
