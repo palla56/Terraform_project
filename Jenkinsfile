@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                    docker.build('terraform-local-image')
+                  sh './build-image.sh'
                 }
             }
         }
